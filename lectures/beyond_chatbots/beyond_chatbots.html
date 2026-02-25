@@ -485,7 +485,6 @@ Peter Ganong and Maggie Shi
 <p>In all the other lectures, we were relatively opinionated about what you <strong>should</strong> do.</p>
 <p>Here, our views are much less well-formed.</p>
 <p>People are still working to understand what these tools can do, and what they <strong>should</strong> and <strong>shouldn’t</strong> be allowed to do.</p>
-<p>Also, first time ever giving this lecture so don’t know pacing in advance, glad to go deeper with examples.</p>
 </section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
@@ -706,20 +705,6 @@ Peter Ganong and Maggie Shi
 </div>
 </div>
 </section>
-<section id="when-to-use-an-agent-vs.-a-chatbot" class="slide level2">
-<h2>When to use an agent (vs.&nbsp;a chatbot)</h2>
-<p>Use an agent when:</p>
-<ul>
-<li>The task involves <strong>multiple files</strong> or steps</li>
-<li>You would otherwise copy-paste code and data back and forth</li>
-<li>Debugging requires context from the actual output</li>
-</ul>
-<p>Stick to a chatbot when:</p>
-<ul>
-<li>You have a one-off conceptual question</li>
-<li>You want to understand code, not just run it</li>
-</ul>
-</section>
 <section id="summary-2" class="slide level2">
 <h2>Summary</h2>
 <ul>
@@ -866,8 +851,8 @@ Peter Ganong and Maggie Shi
 </ul>
 </section></section>
 <section>
-<section id="skills" class="title-slide slide level1 center">
-<h1>Skills</h1>
+<section id="skills-context-windows-and-tokens" class="title-slide slide level1 center">
+<h1>Skills, Context Windows, and Tokens</h1>
 
 </section>
 <section id="what-is-a-skill" class="slide level2">
@@ -944,6 +929,24 @@ Peter Ganong and Maggie Shi
 <p>Installing a skill is like installing any software package.</p>
 <p>You are trusting that it does what it says.</p>
 <p>Most skills are fine. But some are not. The next section explains how to protect yourself.</p>
+</section>
+<section id="context-windows-and-memory" class="slide level2">
+<h2>Context windows and memory</h2>
+<ul>
+<li>Every agent session has a <strong>context window</strong> — a limit on how much text the agent can “remember” at once</li>
+<li>When the window fills up, the agent automatically compresses earlier messages (“auto-compact”) — some detail is lost</li>
+<li>Manage this by starting fresh sessions for new tasks and keeping <code>CLAUDE.md</code> updated with key context</li>
+<li>At the end of a session, write a brief sign-out message summarizing what was done and what comes next — so the next session picks up without losing context</li>
+</ul>
+</section>
+<section id="what-are-tokens" class="slide level2">
+<h2>What are tokens?</h2>
+<ul>
+<li>A <strong>token</strong> is the basic unit of text an LLM processes — roughly 4 characters or ¾ of a word</li>
+<li>Every message you send and receive consumes tokens; the model can only “see” what fits in its context window</li>
+<li>Larger files, longer histories, and verbose prompts all use more tokens</li>
+<li><strong>How to manage</strong>: avoid needlessly long prompts, break large tasks into fresh sessions, avoid pasting entire large files when a snippet will do</li>
+</ul>
 </section>
 <section id="summary-4" class="slide level2">
 <h2>Summary</h2>
@@ -1022,7 +1025,6 @@ Peter Ganong and Maggie Shi
 <ul>
 <li>Student data with PII (names, IDs, survey responses)</li>
 <li>Confidential firm data shared under an NDA</li>
-<li>Preliminary research results not ready for public release</li>
 <li>Health records or administrative microdata with restricted use agreements</li>
 </ul>
 <p>Use AI tools with caution when working with sensitive data. Make sure that it can’t leak your data.</p>
@@ -1034,37 +1036,6 @@ Peter Ganong and Maggie Shi
 <li><strong>Risk 2</strong>: Malicious skills can exfiltrate your data — only install from trusted sources</li>
 <li><strong>Risk 3</strong>: Pasting sensitive data into AI tools sends it to external servers — know your data agreements</li>
 <li>This technology is evolving fast. Use it — carefully.</li>
-</ul>
-</section></section>
-<section>
-<section id="going-deeper" class="title-slide slide level1 center">
-<h1>Going Deeper</h1>
-
-</section>
-<section id="mcps-giving-agents-new-tools" class="slide level2">
-<h2>MCPs: giving agents new tools</h2>
-<ul>
-<li><strong>Model Context Protocol (MCP)</strong> is a standard for connecting agents to external data sources and services (databases, APIs, browsers)</li>
-<li>Think of MCPs as a richer version of skills — they let the agent read live data or take actions outside its folder</li>
-<li><a href="https://modelcontextprotocol.io/introduction">MCP documentation</a></li>
-</ul>
-</section>
-<section id="context-windows-and-memory" class="slide level2">
-<h2>Context windows and memory</h2>
-<ul>
-<li>Every agent session has a <strong>context window</strong> — a limit on how much text the agent can “remember” at once</li>
-<li>When the window fills up, the agent automatically compresses earlier messages (“auto-compact”) — some detail is lost</li>
-<li>Manage this by starting fresh sessions for new tasks and keeping <code>CLAUDE.md</code> updated with key context</li>
-<li>At the end of a session, write a brief sign-out message summarizing what was done and what comes next — so the next session picks up without losing context</li>
-</ul>
-</section>
-<section id="what-are-tokens" class="slide level2">
-<h2>What are tokens?</h2>
-<ul>
-<li>A <strong>token</strong> is the basic unit of text an LLM processes — roughly 4 characters or ¾ of a word</li>
-<li>Every message you send and receive consumes tokens; the model can only “see” what fits in its context window</li>
-<li>Larger files, longer histories, and verbose prompts all use more tokens</li>
-<li><strong>How to manage</strong>: keep prompts concise, break large tasks into fresh sessions, avoid pasting entire large files when a snippet will do</li>
 </ul>
 </section>
 <section id="developing-taste-what-to-delegate" class="slide level2">
